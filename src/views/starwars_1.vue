@@ -75,7 +75,7 @@ export default {
       prev: "",
       loader: true,
       total_items: "",
-      page: 0,
+      page: 1,
       total_pages: "",
       filter: ""
     };
@@ -124,15 +124,21 @@ export default {
         .navigateTo(route)
         .then(res => {
           this.loader = false;
+          let prevPage = this.total_pages;
+          let prevLength = this.ch_data.length;
           let { results, next, previous, count } = res.data;
-          if(results.length > 0) this.page = 1;
           this.ch_data = results;
           this.next = next;
           this.prev = previous;
           this.total_items = count;
-          this.total_pages = Math.ceil(count / 10);
-          if (dir === "next") this.page++;
-          else this.page--;
+          if (dir === "next"){
+            this.total_pages += results.length; 
+            this.page = prevPage + 1;
+          } 
+          else {
+            this.total_pages -= prevLength;
+            this.page -= results.length;
+          }
         })
         .catch(err => {
           this.loader = false;
@@ -146,12 +152,11 @@ export default {
         .then(res => {
           this.loader = false;
           let { results, next, previous, count } = res.data;
-          if(results.length > 0) this.page = 1;
           this.ch_data = results;
           this.next = next;
           this.prev = previous;
           this.total_items = count;
-          this.total_pages = Math.ceil(count / 10);
+          this.total_pages = (results.length - 1) + this.page;
         })
         .catch(err => {
           this.loader = false;
