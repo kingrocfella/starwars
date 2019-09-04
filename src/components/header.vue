@@ -7,21 +7,21 @@
       <div class="middle">
         <div class="mid_content">
           <div class="dir">
-            <div class="dir_logo"><Logo /> </div>
+            <div class="dir_logo">
+              <Logo />
+            </div>
             <div class="dir_text">Directory</div>
-            <div class="hr"><hr></div>
+            <div class="hr">
+              <hr />
+            </div>
           </div>
           <div class="desc">
-            <div class="desc1">
-              Find your favorite Characters, Films, Species,
-            </div>
-            <div class="desc2">
-              Starships and Planets
-            </div>
+            <div class="desc1">Find your favorite Characters, Films, Species,</div>
+            <div class="desc2">Starships and Planets</div>
           </div>
           <div class="search">
             <i class="fas fa-search"></i>
-            <input type="text" placeholder="Enter a search term" />
+            <input type="text" placeholder="Enter a search term" v-model="search" id="searchBox" />
           </div>
         </div>
       </div>
@@ -31,9 +31,31 @@
 
 <script>
 import Logo from "../components/logo";
+import { setTimeout, clearTimeout } from "timers";
 export default {
   components: {
     Logo
+  },
+  data() {
+    return {
+      search: ""
+    };
+  },
+  watch: {
+    search: function() {
+      let typingTimer; //timer identifier
+      let myInput = document.getElementById("searchBox");
+
+      //on keyup, start the countdown
+      //store search term in vuex store after 2 seconds automatically
+      let app = this;
+      myInput.addEventListener("keyup", () => {
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(() => {
+          app.$store.dispatch("setSearchTerm", app.search);
+        }, 2000);
+      });
+    }
   }
 };
 </script>
@@ -66,41 +88,41 @@ export default {
     ".";
 }
 
-.mid_content{
+.mid_content {
   grid-area: mc;
   display: grid;
   grid-template-rows: repeat(3, 1fr);
   grid-row-gap: 1em;
-  grid-template-areas: 
-  "dir"
-  "desc"
-  "sh";
+  grid-template-areas:
+    "dir"
+    "desc"
+    "sh";
 }
 
 .dir {
   grid-area: dir;
   display: grid;
-  grid-template-columns: repeat(8,1fr);
-  grid-template-areas: 
-  ". . . dirlogo dirtext . . ."
-  ". . . hr hr . . .";
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-areas:
+    ". . . dirlogo dirtext . . ."
+    ". . . hr hr . . .";
 }
 
-.dir > .dir_logo{
+.dir > .dir_logo {
   grid-area: dirlogo;
 }
 
-.dir > .hr{
+.dir > .hr {
   grid-area: hr;
   margin-top: -10%;
 }
 
-.dir > .dir_text{
+.dir > .dir_text {
   grid-area: dirtext;
   color: white;
   font-size: 2em;
   font-weight: 900;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
 }
 
 .desc {
@@ -110,11 +132,12 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
   font-size: 1.1em;
 }
 
-.search, input {
+.search,
+input {
   grid-area: sh;
   display: flex;
   flex: 0.6;
@@ -123,7 +146,6 @@ export default {
   justify-content: center;
   border-radius: 5px;
   border: none;
-} 
-
+}
 </style>
 

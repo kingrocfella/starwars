@@ -10,6 +10,14 @@
           <div class="char_bio">
             <div class="char_birth"> Birth Year: {{item.birth_year}}</div>
             <div class="char_gender">Gender: {{item.gender}}</div>
+            <div class="show_details" @click="showDetails(item.name)" v-if="selectedName !== item.name">Read More</div>
+            <div class="details" v-else>
+              <div class="char_height">Height: {{item.height}}</div>
+              <div class="char_mass">Mass: {{item.mass}}</div>
+              <div class="char_hair_color">Hair Color: {{item.hair_color}}</div>
+              <div class="char_skin_color">Skin Color: {{item.skin_color}}</div>
+              <div class="char_eye_color">Eye Color: {{item.eye_color}}</div>
+            </div>
           </div>
         </div>
       </div>
@@ -20,11 +28,19 @@
 <script>
 export default {
   props: ["data"],
+  data() {
+    return {
+      selectedName:""
+    }
+  },
   methods: {
     charIndex(){
       //generate a random number between 1 - 4 for character images
       let num = Math.floor(Math.random() * 3) + 1;
       return require(`@/assets/character-${num}.jpg`);
+    },
+    showDetails(name){
+      this.selectedName = name;
     }
   },
 };
@@ -54,7 +70,7 @@ export default {
 
 .char_text {
   grid-area: char_text;
-  padding-left: 0.5em;
+  padding-left: 0.3em;
   display: grid;
   grid-template-rows: 3em 2em 2em auto 5em;
   grid-template-areas:
@@ -75,5 +91,16 @@ export default {
 .char_bio {
   grid-area: bio;
   font-family: "Ubuntu", sans-serif;
+}
+
+.char_birth, .char_gender, .details{
+  color: #949494;
+}
+
+.show_details{
+  font-weight: 700;
+  text-decoration: underline;
+  padding: 5px;
+  cursor: pointer;
 }
 </style>

@@ -11,9 +11,11 @@
             <div class="top_select">
               <div class="dd_1">
                 <span>FILTER</span>
-                <select name="filter">
+                <select v-model="filter">
                   <option value>Choose a value</option>
                   <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="robot">Robot</option>
                 </select>
               </div>
               <div class="dd_2">
@@ -28,11 +30,12 @@
         </div>
         <div class="mid_mid">
           <div v-if="loader" class="loader">Please wait...</div>
-          <Characters :data="ch_data"  v-if="!loader" />
+          <div v-if="(filterData.length === 0) && !loader" class="loader">No records to be displayed!</div>
+          <Characters :data="filterData" v-if="!loader" />
         </div>
         <div class="bottom_mid" v-if="!loader">
           <div class="navs">
-            <div class="nav_num"> {{page}} - {{total_pages}} of {{total_items}}</div>
+            <div class="nav_num">{{page}} - {{total_pages}} of {{total_items}}</div>
             <div class="navs-btn">
               <div class="left">
                 <button id="left-nav" @click="navigateTo(prev,'prev')">
@@ -71,16 +74,50 @@ export default {
       next: "",
       prev: "",
       loader: true,
-      total_items:"",
-      page: 1,
-      total_pages: ""
+      total_items: "",
+      page: 0,
+      total_pages: "",
+      filter: ""
     };
   },
   created() {
     this.getAllPeople();
   },
+  watch: {
+    "$store.state.searchTerm": function() {
+      this.loader = true;
+      //call search API with search term as parameter
+      apiService
+        .searchPeople(this.$store.state.searchTerm)
+        .then(res => {
+          this.loader = false;
+          let { results, next, previous, count } = res.data;
+          if(results.length > 0) this.page = 1;
+          else this.page = 0; this.next = null; this.prev = null; this.total_pages = 0; this.total_items = 0;
+          this.ch_data = results;
+          this.next = next;
+          this.prev = previous;
+          this.total_items = count;
+          this.total_pages = Math.ceil(count / 10);
+        })
+        .catch(err => {
+          this.loader = false;
+          alert("An error occurred while fetching data!");
+          console.log(err.message);
+        });
+    }
+  },
+  computed: {
+    filterData: function(value) {
+      if (this.ch_data) {
+        return this.ch_data.filter(data => {
+          return data.gender.match(this.filter);
+        });
+      } else return null;
+    }
+  },
   methods: {
-    navigateTo(route,dir) {
+    navigateTo(route, dir) {
       if (route === null) return;
       this.loader = true;
       apiService
@@ -88,12 +125,13 @@ export default {
         .then(res => {
           this.loader = false;
           let { results, next, previous, count } = res.data;
+          if(results.length > 0) this.page = 1;
           this.ch_data = results;
           this.next = next;
           this.prev = previous;
           this.total_items = count;
-          this.total_pages = Math.ceil(count/10);
-          if(dir === 'next') this.page++;
+          this.total_pages = Math.ceil(count / 10);
+          if (dir === "next") this.page++;
           else this.page--;
         })
         .catch(err => {
@@ -108,11 +146,12 @@ export default {
         .then(res => {
           this.loader = false;
           let { results, next, previous, count } = res.data;
+          if(results.length > 0) this.page = 1;
           this.ch_data = results;
           this.next = next;
           this.prev = previous;
           this.total_items = count;
-          this.total_pages = Math.ceil(count/10);
+          this.total_pages = Math.ceil(count / 10);
         })
         .catch(err => {
           this.loader = false;
@@ -219,17 +258,17 @@ select {
   align-items: center;
 }
 
-.navs{
+.navs {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
 
-.navs-btn{
+.navs-btn {
   display: flex;
 }
 
-.nav_num{
+.nav_num {
   margin-right: 10px;
   font-family: "Ubuntu", sans-serif;
   color: #bfbfbf;

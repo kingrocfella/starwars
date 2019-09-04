@@ -13,5 +13,11 @@ export default {
       method: 'get',
       url: route
     });
+  },
+  searchPeople(name){
+    return axios({
+      method: 'get',
+      url: `${baseURL}/people?search=${name}`
+    });
   }
 }
