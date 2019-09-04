@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import starwars_1  from './views/starwars_1.vue'
+import people from './views/people.vue'
 
 Vue.use(Router)
 
@@ -9,7 +9,7 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: starwars_1
+      component: people
     },
     {
       path: '/about',
