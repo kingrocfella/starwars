@@ -34,7 +34,7 @@
           <Characters :data="filterData" v-if="!loader" />
         </div>
         <div class="bottom_mid" v-if="!loader">
-          <div class="navs">
+          <div class="navs" v-if="(filterData.length !== 0) && !loader">
             <div class="nav_num">{{page}} - {{total_pages}} of {{total_items}}</div>
             <div class="navs-btn">
               <div class="left">
@@ -92,13 +92,11 @@ export default {
         .then(res => {
           this.loader = false;
           let { results, next, previous, count } = res.data;
-          if(results.length > 0) this.page = 1;
-          else this.page = 0; this.next = null; this.prev = null; this.total_pages = 0; this.total_items = 0;
           this.ch_data = results;
           this.next = next;
           this.prev = previous;
           this.total_items = count;
-          this.total_pages = Math.ceil(count / 10);
+          this.total_pages = (results.length - 1) + this.page;
         })
         .catch(err => {
           this.loader = false;
