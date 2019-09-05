@@ -19,5 +19,17 @@ export default {
       method: 'get',
       url: `${baseURL}/people?search=${name}`
     });
-  }
+  },
+  getAllStarships(){
+    return axios({
+      method: 'get',
+      url: `${baseURL}/starships`
+    });
+  },
+  searchStarships(name){
+    return axios({
+      method: 'get',
+      url: `${baseURL}/starships?search=${name}`
+    });
+  },
 }

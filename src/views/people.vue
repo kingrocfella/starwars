@@ -52,7 +52,7 @@
         </div>
       </div>
     </div>
-    <div class="footer"></div>
+    <Footer class="footer"/>
   </div>
 </template>
 
@@ -61,16 +61,17 @@
 import Header from "@/components/header";
 import Characters from "@/components/characters";
 import apiService from "@/services/apiroutes";
+import Footer from "@/components/footer"
 export default {
   name: "home",
   components: {
     Header,
-    Characters
+    Characters,
+    Footer
   },
   data() {
     return {
       ch_data: [],
-      errMessage: "",
       next: "",
       prev: "",
       loader: true,
@@ -181,7 +182,6 @@ export default {
 
 .header {
   grid-area: h;
-  background-color: black;
 }
 
 .content {
@@ -274,7 +274,7 @@ select {
 .nav_num {
   margin-right: 10px;
   font-family: "Ubuntu", sans-serif;
-  color: #bfbfbf;
+  color: #a1a1a1;
 }
 
 #left-nav {
@@ -304,7 +304,5 @@ select {
 
 .footer {
   grid-area: f;
-  background-color: #c4c4c4;
-  margin-bottom: 10px;
 }
 </style>

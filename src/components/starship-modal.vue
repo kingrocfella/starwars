@@ -1,0 +1,98 @@
+<template>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <strong>Name</strong>
+          </td>
+          <td></td>
+          <td>{{selectedName.name}}</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Manufacturer</strong>
+          </td>
+          <td></td>
+          <td>{{selectedName.manufacturer}}</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Cost</strong>
+          </td>
+          <td></td>
+          <td>{{selectedName.cost_in_credits}}</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Length</strong>
+          </td>
+          <td></td>
+          <td>{{selectedName.length}}</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Max Atmosphering Speed</strong>
+          </td>
+          <td></td>
+          <td>{{selectedName.max_atmosphering_speed}}</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Crew</strong>
+          </td>
+          <td></td>
+          <td>{{selectedName.crew}}</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Passangers</strong>
+          </td>
+          <td></td>
+          <td>{{selectedName.passengers}}</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Consumables</strong>
+          </td>
+          <td></td>
+          <td>{{selectedName.consumables}}</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Hyperdrive Rating</strong>
+          </td>
+          <td></td>
+          <td>{{selectedName.hyperdrive_rating}}</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>MGLT</strong>
+          </td>
+          <td></td>
+          <td>{{selectedName.MGLT}}</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Starship Class</strong>
+          </td>
+          <td></td>
+          <td>{{selectedName.starship_class}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</template>
+
+<script>
+export default {
+  props: ["selectedName"]
+};
+</script>

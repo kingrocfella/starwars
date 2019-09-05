@@ -3,7 +3,7 @@
     <div v-for="(item,index) in data" :key="index">
       <div class="char_container">
         <div class="char_img">
-          <img :src="charIndex()" height="300px" width="300px" />
+          <img :src="charIndex()" height="280px" width="300px" />
         </div>
         <div class="char_text">
           <div class="char_name">{{item.name}}</div>
