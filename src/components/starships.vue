@@ -10,28 +10,8 @@
           <div class="text">
             <div class="model">Model: {{item.model}}</div>
             <div class="cargo_capacity">Cargo Capacity: {{item.cargo_capacity}}</div>
-            <div class="w3-container">
-              <div id="id01" class="w3-modal">
-                <div class="w3-modal-content">
-                  <div class="w3-container">
-                    <span
-                      onclick="document.getElementById('id01').style.display='none'"
-                      class="w3-button w3-display-topright"
-                    >&times;</span>
-                    <div class="details">
-                      <StarshipModal :selectedName="selectedName" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <button
-              onclick="document.getElementById('id01').style.display='block'"
-              style="display: none;"
-              id="clickBtn"
-            ></button>
           </div>
-          <div class="read_more" v-if="selectedName !== item.name">
+          <div class="read_more">
             <button class="read_more_btn" @click="showDetails(item)">
               Read More
               <i class="fas fa-arrow-right"></i>
@@ -44,26 +24,26 @@
 </template>
 
 <script>
-import StarshipModal from "@/components/starship-modal";
 export default {
-  components: {
-    StarshipModal
-  },
   props: ["data"],
   methods: {
-    shipIndex() {
+    generateIndex(){
       //generate a random number between 1 - 6 for starship images
-      let num = Math.floor(Math.random() * 6) + 1;
-      return require(`@/assets/starship-${num}.jpg`);
+      return Math.floor(Math.random() * 6) + 1;
     },
-    showDetails(name) {
-      this.selectedName = name;
-      document.getElementById("clickBtn").click();
+    shipIndex() {
+      return require(`@/assets/starship-${this.generateIndex()}.jpg`);
+    },
+    showDetails(detail) {
+      //get id of the selected item by splitting the current url
+      let id = String(detail.url).split("https://swapi.co/api/starships/");
+      //redirect to starship detail page
+      this.$router.push(`/starship/details/${id[1]}${this.generateIndex()}`);
     }
   },
   data() {
     return {
-      selectedName: ""
+      imgNum: ""
     };
   }
 };

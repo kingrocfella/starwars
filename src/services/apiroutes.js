@@ -32,4 +32,10 @@ export default {
       url: `${baseURL}/starships?search=${name}`
     });
   },
+  getStarshipDetail(id){
+    return axios({
+      method: 'get',
+      url: `${baseURL}/starships/${id}`
+    });
+  }
 }

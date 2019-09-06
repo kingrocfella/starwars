@@ -1,90 +1,83 @@
 <template>
-  <div>
+  <div class="detail">
     <table>
-      <thead>
-        <tr>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
       <tbody>
         <tr>
           <td>
             <strong>Name</strong>
           </td>
           <td></td>
-          <td>{{selectedName.name}}</td>
+          <td>{{detail.name}}</td>
         </tr>
         <tr>
           <td>
             <strong>Manufacturer</strong>
           </td>
           <td></td>
-          <td>{{selectedName.manufacturer}}</td>
+          <td>{{detail.manufacturer}}</td>
         </tr>
         <tr>
           <td>
             <strong>Cost</strong>
           </td>
           <td></td>
-          <td>{{selectedName.cost_in_credits}}</td>
+          <td>{{detail.cost_in_credits}}</td>
         </tr>
         <tr>
           <td>
             <strong>Length</strong>
           </td>
           <td></td>
-          <td>{{selectedName.length}}</td>
+          <td>{{detail.length}}</td>
         </tr>
         <tr>
           <td>
             <strong>Max Atmosphering Speed</strong>
           </td>
           <td></td>
-          <td>{{selectedName.max_atmosphering_speed}}</td>
+          <td>{{detail.max_atmosphering_speed}}</td>
         </tr>
         <tr>
           <td>
             <strong>Crew</strong>
           </td>
           <td></td>
-          <td>{{selectedName.crew}}</td>
+          <td>{{detail.crew}}</td>
         </tr>
         <tr>
           <td>
             <strong>Passangers</strong>
           </td>
           <td></td>
-          <td>{{selectedName.passengers}}</td>
+          <td>{{detail.passengers}}</td>
         </tr>
         <tr>
           <td>
             <strong>Consumables</strong>
           </td>
           <td></td>
-          <td>{{selectedName.consumables}}</td>
+          <td>{{detail.consumables}}</td>
         </tr>
         <tr>
           <td>
             <strong>Hyperdrive Rating</strong>
           </td>
           <td></td>
-          <td>{{selectedName.hyperdrive_rating}}</td>
+          <td>{{detail.hyperdrive_rating}}</td>
         </tr>
         <tr>
           <td>
             <strong>MGLT</strong>
           </td>
           <td></td>
-          <td>{{selectedName.MGLT}}</td>
+          <td>{{detail.MGLT}}</td>
         </tr>
         <tr>
           <td>
             <strong>Starship Class</strong>
           </td>
           <td></td>
-          <td>{{selectedName.starship_class}}</td>
+          <td>{{detail.starship_class}}</td>
         </tr>
       </tbody>
     </table>
@@ -93,6 +86,12 @@
 
 <script>
 export default {
-  props: ["selectedName"]
+  props: ["detail"]
 };
 </script>
+
+<style scoped>
+  .detail{
+    font-size: 0.9em;
+  }
+</style>
