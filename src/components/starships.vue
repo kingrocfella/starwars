@@ -27,7 +27,7 @@
 export default {
   props: ["data"],
   methods: {
-    generateIndex(){
+    generateIndex() {
       //generate a random number between 1 - 6 for starship images
       return Math.floor(Math.random() * 6) + 1;
     },
@@ -40,11 +40,6 @@ export default {
       //redirect to starship detail page
       this.$router.push(`/starship/details/${id[1]}${this.generateIndex()}`);
     }
-  },
-  data() {
-    return {
-      imgNum: ""
-    };
   }
 };
 </script>
@@ -54,6 +49,14 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
 }
 .starships {
   height: 30em;

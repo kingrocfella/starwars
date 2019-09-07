@@ -57,7 +57,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import Header from "@/components/header";
 import Characters from "@/components/characters";
 import apiService from "@/services/apiroutes";
@@ -172,7 +171,7 @@ export default {
   height: 200vh;
   display: grid;
   grid-template-rows: 25em auto 3em;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(100px,1fr));
   grid-template-areas:
     "h h h h h h h h h h h h"
     ". c c c c c c c c c c ."

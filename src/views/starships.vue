@@ -136,12 +136,13 @@ export default {
   height: 200vh;
   display: grid;
   grid-template-rows: 25em auto 3em;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(0.8fr,1fr));
   grid-template-areas:
     "h h h h h h h h h h h h"
     ". c c c c c c c c c c ."
     "f f f f f f f f f f f f";
   grid-row-gap: 1em;
+  grid-column-gap: 1em;
 }
 
 .header {

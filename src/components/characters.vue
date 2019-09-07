@@ -51,7 +51,7 @@ export default {
 .characters{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .char_container {

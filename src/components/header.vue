@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import Logo from "../components/logo";
+import Logo from "@/components/logo";
 import { setTimeout, clearTimeout } from "timers";
 export default {
   components: {
@@ -134,6 +134,19 @@ export default {
   align-items: center;
   font-family: "Ubuntu", sans-serif;
   font-size: 1.1em;
+}
+
+@media screen and (max-width: 500px) {
+  .desc {
+    grid-area: desc;
+    color: #f7f7f7;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: "Ubuntu", sans-serif;
+    font-size: 1.1em;
+  }
 }
 
 .search,

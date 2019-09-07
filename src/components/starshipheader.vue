@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import Logo from "../components/logo";
+import Logo from "@/components/logo";
 export default {
   components: {
     Logo
@@ -65,7 +65,7 @@ export default {
 
 .box{
   grid-area: box;
-  font-size: 1.4em;
+  font-size: 1.3em;
   height: 2.8em;
   font-weight: bold;
   display: grid;
