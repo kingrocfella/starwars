@@ -29,7 +29,7 @@ export default {
   methods: {
     generateIndex() {
       //generate a random number between 1 - 6 for starship images
-      return Math.floor(Math.random() * 6) + 1;
+      return Math.floor(Math.random() * 5) + 1;
     },
     shipIndex() {
       return require(`@/assets/starship-${this.generateIndex()}.jpg`);
@@ -39,6 +39,7 @@ export default {
       let id = String(detail.url).split("https://swapi.co/api/starships/");
       //redirect to starship detail page
       this.$router.push(`/starship/details/${id[1]}${this.generateIndex()}`);
+      location.reload(true);
     }
   }
 };

@@ -3,14 +3,18 @@
     <div v-for="(item,index) in data" :key="index">
       <div class="char_container">
         <div class="char_img">
-          <img :src="charIndex()" height="280px" width="300px" />
+          <img :src="charIndex()"  />
         </div>
         <div class="char_text">
           <div class="char_name">{{item.name}}</div>
           <div class="char_bio">
-            <div class="char_birth"> Birth Year: {{item.birth_year}}</div>
+            <div class="char_birth">Birth Year: {{item.birth_year}}</div>
             <div class="char_gender">Gender: {{item.gender}}</div>
-            <div class="show_details" @click="showDetails(item.name)" v-if="selectedName !== item.name">Read More</div>
+            <div
+              class="show_details"
+              @click="showDetails(item.name)"
+              v-if="selectedName !== item.name"
+            >Read More</div>
             <div class="details" v-else>
               <div class="char_height">Height: {{item.height}}</div>
               <div class="char_mass">Mass: {{item.mass}}</div>
@@ -30,25 +34,24 @@ export default {
   props: ["data"],
   data() {
     return {
-      selectedName:""
-    }
+      selectedName: ""
+    };
   },
   methods: {
-    charIndex(){
+    charIndex() {
       //generate a random number between 1 - 4 for character images
       let num = Math.floor(Math.random() * 3) + 1;
       return require(`@/assets/character-${num}.jpg`);
     },
-    showDetails(name){
+    showDetails(name) {
       this.selectedName = name;
     }
-  },
+  }
 };
 </script>
 
 <style scoped>
-
-.characters{
+.characters {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -66,6 +69,11 @@ export default {
 
 .char_img {
   grid-area: img;
+}
+
+.char_img > img{
+  width: 20em;
+  height: 18.9em;
 }
 
 .char_text {
@@ -93,11 +101,13 @@ export default {
   font-family: "Ubuntu", sans-serif;
 }
 
-.char_birth, .char_gender, .details{
+.char_birth,
+.char_gender,
+.details {
   color: #949494;
 }
 
-.show_details{
+.show_details {
   font-weight: 700;
   text-decoration: underline;
   padding: 5px;

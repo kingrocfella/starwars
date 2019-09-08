@@ -12,6 +12,7 @@
       </div>
     </div>
     <div class="slider">
+      <div v-if="slider_loader" class="loader">Please wait...</div>
       <StarShips :data="slider_data" />
     </div>
     <Footer class="footer" />
@@ -36,7 +37,8 @@ export default {
     return {
       starship_data: [],
       loader: "",
-      slider_data: []
+      slider_data: [],
+      slider_loader: ""
     };
   },
   created() {
@@ -59,18 +61,28 @@ export default {
         });
     },
     getAllStarships() {
+      this.slider_loader = true;
       apiService
         .getAllStarships()
         .then(res => {
-          this.loader = false;
+          this.slider_loader = false;
           let { results } = res.data;
-          this.slider_data = results.slice(0, 3);
+          let num = this.generateIndexes();
+          console.log(num)
+          this.slider_data = results.slice(num[0],num[1]);
         })
         .catch(err => {
-          this.loader = false;
+          this.slider_loader = false;
           alert("An error occurred while fetching data!");
           console.log(err.message);
         });
+    },
+    generateIndexes(){
+      //generate 2 randoms numbers whose difference is 3;
+      let max,min;
+      let num1 = Math.floor(Math.random() * 6) + 1;
+      let num2 = 3 + num1;
+      return [num1,num2];
     }
   }
 };
@@ -84,7 +96,7 @@ export default {
   grid-template-rows: 25em 30em auto 3em;
   grid-template-areas:
     "h h h h h h h h h h h h"
-    ". . . c c c c c c. . ."
+    ". . . c c c c c c . . ."
     ". s s s s s s s s s s ."
     "f f f f f f f f f f f f";
   grid-row-gap: 1em;
@@ -98,8 +110,8 @@ export default {
     grid-template-rows: 25em 30em auto 3em;
     grid-template-areas:
       "h h h h h h h h h h h h"
-      ". . . c c c c c c. . ."
-      ". s s s s s s s s s s ."
+      ". . c c c c c c c c . ."
+      "s s s s s s s s s s s s"
       "f f f f f f f f f f f f";
     grid-row-gap: 1em;
   }

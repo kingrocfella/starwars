@@ -139,10 +139,10 @@ export default {
   grid-template-columns: repeat(auto-fit, minmax(0.8fr,1fr));
   grid-template-areas:
     "h h h h h h h h h h h h"
-    ". c c c c c c c c c c ."
+    ". . . c c c c c c . . ."
     "f f f f f f f f f f f f";
   grid-row-gap: 1em;
-  grid-column-gap: 1em;
+  grid-column-gap: 2em;
 }
 
 .header {
