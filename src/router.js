@@ -11,12 +11,12 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: people
+      component: starships
     },
     {
-      path: '/starships',
+      path: '/characters',
       name: 'starships',
-      component: starships
+      component: people
     },
     {
       path: '/starship/details/:id/:imgId',

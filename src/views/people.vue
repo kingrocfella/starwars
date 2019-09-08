@@ -249,8 +249,6 @@ select {
 .mid_mid {
   grid-area: mid_mid;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
 }
 
 .bottom_mid {
