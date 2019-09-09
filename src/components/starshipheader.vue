@@ -8,11 +8,11 @@
           <div class="name">{{name}}</div>
           <div class="right_box"></div>
         </div>
-        <div class="arrows">
-          <div class="left_nav">
+        <div class="arrows" title="Click to change background image">
+          <div class="left_nav" @click="changeBgImage()">
             <i class="fas fa-chevron-circle-left"></i>
           </div>
-          <div class="right_nav">
+          <div class="right_nav" @click="changeBgImage()">
             <i class="fas fa-chevron-circle-right"></i>
           </div>
         </div>
@@ -27,7 +27,12 @@ export default {
   components: {
     Logo
   },
-  props: ["imgId","name"]
+  props: ["imgId","name"],
+  methods: {
+    changeBgImage(){
+      this.imgId = Math.floor(Math.random() * 6) + 1;
+    }
+  },
 };
 </script>
 
@@ -109,5 +114,9 @@ export default {
 
 .fas{
   font-size: 3em;
+}
+
+.left_nav, .right_nav{
+  cursor: pointer;
 }
 </style>

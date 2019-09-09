@@ -108,9 +108,9 @@ export default {
   computed: {
     filterData: function(value) {
       if (this.ch_data) {
-        return this.ch_data.filter(data => {
-          return data.gender.match(this.filter);
-        });
+        if (this.filter) {
+          return this.ch_data.filter(data => data.gender === this.filter);
+        } else return this.ch_data
       } else return null;
     }
   },
