@@ -21,16 +21,6 @@ npm install
 npm run serve
 ```
 
-### Live Demo
-To view a working demo, visit the link below
-```sh
-##To view the starwars starships
-http://165.227.237.210/starwars
-
-##To view the starwars characters
-http://165.227.237.210/starwars/#/characters
-```
-
 License
 ----
 
